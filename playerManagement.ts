@@ -10,7 +10,7 @@ export class PlayerManagement {
         let exits = false;
         for (let i = 0; i < this.listClient.length; i++) {
             if(this.listClient[i].getName() == client.getName()){
-                console.log('Tai khoan da ton tai', this.listClient[i].getName(), client.getName());
+                console.log('Tai khoan da ton tai', this.listClient[i].getName());
                 exits = true;
                 break;
             }
@@ -36,7 +36,6 @@ export class PlayerManagement {
             }
         }
     }
-
     findUser(Id: string) { // phương thức tìm tài khoản qua Id tài khoản
         console.log(this.listClient[0].Id)
             for (let i = 0; i < this.listClient.length; i++) {

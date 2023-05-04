@@ -1,19 +1,38 @@
+
 export class PC {
+    count:number
 
-    startTime: Date|null = null
-    endTime: Date|null  = null
+    startTime: Date | null = null
+    endTime: Date | null = null
     arrOder: string[] = []
+
+    // oder: string
     constructor() {
+        this.count = 0
     }
-    totalMoneyPc(){
-       if(this.startTime&&this.endTime){
-           return  (this.endTime.getMinutes()-this.startTime.getMinutes())*167
-       }
+
+    listOder() {
+        if (this.arrOder) {
+            for (let i = 0; i < this.arrOder.length; i++) {
+                this.count += 10000
+            }
+        }
+        return [this.arrOder,this.count]
 
     }
-    listOder(){
-        if (this.arrOder.push())
+
+
+    totalMoneyPc() {
+        if (this.startTime && this.endTime) {
+            var totalpc = ((this.endTime.getMinutes() - this.startTime.getMinutes()) * 167)
+
+            // @ts-ignore
+            return (totalpc + this.listOder()[1])
+        }
     }
 }
+
+
+
 
 
