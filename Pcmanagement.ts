@@ -23,6 +23,7 @@ TurnOffPc(number:number) {
 }
 TotalMoneyPC(number:number){
     console.log("Số tiền cần thanh toán của máy "+ (number) +" là:"+this.ListPc[number-1].totalMoneyPc()+"VNĐ" )
+    console.log('Duc Anh dep trai')
     return
 }
 Showarr(number:number){

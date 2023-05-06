@@ -1,7 +1,6 @@
 
 export class PC {
     count:number
-
     startTime: Date | null = null
     endTime: Date | null = null
     arrOder: string[] = []
