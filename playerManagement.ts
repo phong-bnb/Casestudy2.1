@@ -1,11 +1,7 @@
 import {Profileclient} from "./profileclient";
-
-
 // lớp quản lí danh sách tài khoản:
 export class PlayerManagement {
     listClient: Profileclient[] = []
-
-
     addClient(client: Profileclient) { //phương thức thêm tk mới
         let exits = false;
         for (let i = 0; i < this.listClient.length; i++) {
@@ -17,22 +13,18 @@ export class PlayerManagement {
         }
         if (exits == false) {
             this.listClient.push(client);
-
         }
     }
-
     deleteClient(Id: string) { // phương thức xóa tài khoản
         var id = this.findUser(Id)
         if (!id) {
             console.log("-----Không tìm thấy tài khoản phù hợp để xóa-----")
-
         } else {
             let index = this.listClient.indexOf(id)
             if (index!== -1) {
                 this.listClient.splice(index, 1)
             } else {
                 console.log("-----Không tìm thấy tài khoản phù hợp để xóa-----")
-
             }
         }
     }
@@ -43,9 +35,7 @@ export class PlayerManagement {
                     return this.listClient[i]
                 }
             }
-
     }
-
     upload(Id: string, Name: string, Pass: string, Phone: string) { // phương thức sửa thông tin tài khoản.
         console.log(Id)
         const user = this.findUser(Id)
@@ -68,11 +58,7 @@ export class PlayerManagement {
                     }
                 }
                 return i
-
             })
-
-
-
         }
     }
 }

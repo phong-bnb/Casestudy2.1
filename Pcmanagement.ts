@@ -10,20 +10,16 @@ creatPcAuto(){
     }
     return this.ListPc
 }
-
 TurnOnPc(number:number){
     this.ListPc[number-1].startTime = new Date()
     return this.ListPc[number-1].startTime
 }
-
-
 TurnOffPc(number:number) {
     this.ListPc[number - 1].endTime = new Date()
     return this.ListPc[number - 1].endTime
 }
 TotalMoneyPC(number:number){
     console.log("Số tiền cần thanh toán của máy "+ (number) +" là:"+this.ListPc[number-1].totalMoneyPc()+"VNĐ" )
-    console.log('Duc Anh dep trai')
     return
 }
 Showarr(number:number){

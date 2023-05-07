@@ -24,22 +24,16 @@ export class Profileclient  {
     setPhone(Phone:number){
         this.Phone=Phone
     }
-
     getPhone(){
         return this.Phone
     }
-
     getId(){
         return this.Id
     }
     setPass(Pass:string){
         this.Pass = Pass
     }
-
     getPass(){
         return this.Pass
     }
-
-
-
 }

@@ -1,10 +1,10 @@
 
 export class PC {
+    idclient: string |null = null
     count:number
     startTime: Date | null = null
     endTime: Date | null = null
     arrOder: string[] = []
-
     // oder: string
     constructor() {
         this.count = 0
@@ -17,14 +17,10 @@ export class PC {
             }
         }
         return [this.arrOder,this.count]
-
     }
-
-
     totalMoneyPc() {
         if (this.startTime && this.endTime) {
-            var totalpc = ((this.endTime.getMinutes() - this.startTime.getMinutes()) * 167)
-
+            let totalpc = ((this.endTime.getMinutes() - this.startTime.getMinutes()) * 167)
             // @ts-ignore
             return (totalpc + this.listOder()[1])
         }

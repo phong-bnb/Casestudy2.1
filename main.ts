@@ -9,12 +9,13 @@ let play = new PlayerManagement()
 pcManagement.creatPcAuto()
 let numberPc: number
 let numberPcclient: number
+let choice1 = 0
 let admin = new Profileclient('phong', 123123, 'admin', '123')//khởi tạo mặc định admin
 //------------------------Tạo function làm việc trên 1 PC---------------------------------
 
-function WorkOnThePc() {
+// function WorkOnThePc() {
     numberPc = +readlineSync.question("numberPC: ")
-    if (numberPc == 1) { //nhập số máy chỉ từ 1->30 vì quán chỉ có 30 máy thôi
+    if (numberPc == 1) {
                        console.log("Mời bạn đăng nhập: ")
         let account: string
         let password: string
@@ -44,7 +45,6 @@ function WorkOnThePc() {
                             let id1 = readlineSync.question('Id: ')
                             let client = new Profileclient(name1, phone1, id1, pass1)
                             play.addClient(client)
-
                             break;
                         case 2:
                             let id2 = readlineSync.question(' Nhap id ')
@@ -75,69 +75,56 @@ function WorkOnThePc() {
                             }
                             break
                         case 6:
-                            Player()
-                            break
-                    }
-                }
-                while (choice !== 0);
-            } else {
-                console.log("Sai tài khoản hoặc mật khẩu")
-                return
-            }
-        } while (account !== admin.Name || password !== admin.Pass)
-    }
-}
+                            // Player()
+                            do{
+                                let i = 0
+                                let check = false
+                                console.log('============================')
+                                console.table(pcManagement.ListPc)
+                                numberPcclient = +readlineSync.question("numberPCclient: ")
+                                if (numberPcclient <= 10 && numberPcclient >= 2) {
+                                    console.log("Mời bạn đăng nhập: ")
+                                    let accountClient: string
+                                    let passwordClient: string
 
-WorkOnThePc()
+                                    do {
+                                        accountClient = readlineSync.question("account: ")
+                                        passwordClient = readlineSync.question("password: ",{hideEchoBack:true})
 
-//------function người chơi----------
-function Player() {
-    console.log('============================')
-    console.table(pcManagement.ListPc)
-    numberPcclient = +readlineSync.question("numberPCclient: ")
-    if (numberPcclient <= 10 && numberPcclient >= 2) { //nhập số máy chỉ từ 1->30 vì quán chỉ có 30 máy thôi
-                         console.log("Mời bạn đăng nhập: ")
-        let accountclient: string
-        let passwordclient: string
-        do {
-            accountclient = readlineSync.question("account: ")
-            passwordclient = readlineSync.question("password: ",{hideEchoBack:true})
-            console.log('list',play.listClient)
-            console.log('bumber----',numberPcclient)
-            if (accountclient === play.listClient[numberPcclient-2].Name && passwordclient === play.listClient[numberPcclient-2].Pass) { // check tài khoản mật khẩu admin
-                pcManagement.TurnOnPc(numberPcclient)
-                         console.log("đăng nhập thành công")
-                         console.log(" Cyber C0223G1 kính chào quý khách")
-                console.table(pcManagement.ListPc)
-
-                let choice1 = -1;
-                do {
-                         console.log((`
+                                        for ( i = 0 ; i<play.listClient.length;i++) {
+                                            console.log('ngu')
+                                            console.log(accountClient)
+                                            console.log(pcManagement.ListPc[numberPcclient - 1].idclient)
+                                            if (accountClient == play.listClient[i].Name && passwordClient == play.listClient[i].Pass ) {
+                                                pcManagement.ListPc[numberPcclient - 1].idclient =accountClient
+                                                if(accountClient ==  pcManagement.ListPc[numberPcclient - 1].idclient ){
+                                                    pcManagement.TurnOnPc(numberPcclient)
+                                                    console.log("đăng nhập thành công")
+                                                    console.log(" Cyber C0223G1 kính chào quý khách")
+                                                    console.table(pcManagement.ListPc)
+                                                    choice1 = -1;
+                                                    do {
+                                                        console.log((`
                               ------ Menu Function Client  ------
                                      1:Checkout 
-                                     2:logout
+                                     2:Log list
                                      3:Oder
-                                     4:return
-                                     
+                                     4:Back 
 `))
-                    choice1 = +readlineSync.question(" Enter choice1 : ")
-                    switch (choice1) {
-                        case 1:
-                            pcManagement.TurnOffPc(numberPcclient)
-                            pcManagement.TotalMoneyPC(numberPcclient)
-
-                            pcManagement.ListPc[numberPcclient-1].count = 0
-                            pcManagement.ListPc[numberPcclient-1].arrOder = []
-                            console.log( pcManagement.ListPc[numberPcclient-1].listOder())
-
-                            break
-                        case 2:
-                            pcManagement.Showarr(numberPcclient)
-                            break
-                        case 3:
-                            console.log(
-                                `------ Menu Oder  ------
-
+                                                        choice1 = +readlineSync.question(" Enter choice1 : ")
+                                                        switch (choice1) {
+                                                            case 1:
+                                                                pcManagement.TurnOffPc(numberPcclient)
+                                                                pcManagement.TotalMoneyPC(numberPcclient)
+                                                                pcManagement.ListPc[numberPcclient - 1].count = 0
+                                                                pcManagement.ListPc[numberPcclient - 1].arrOder = []
+                                                                break
+                                                            case 2:
+                                                                pcManagement.Showarr(numberPcclient)
+                                                                break
+                                                            case 3:
+                                                                console.log(
+                                                                    `------ Menu Oder  ------
                                    1:Sting  
                                    2:Chicken egg noodles
                                    3: Coca
@@ -145,38 +132,65 @@ function Player() {
                                    5:Pepsi
                                    6: Beer Hanoi
                                    0: back`)
-                            let oder = readlineSync.question("Menu (sting, chicken egg noodles, coca, aqua,pepsi ,bee):  ")
-                            if(oder==1){
-                                pcManagement.ListPc[numberPcclient-1].arrOder.push("sting")
+                                                                let oder = readlineSync.question("Menu (sting, chicken egg noodles, coca, aqua,pepsi ,bee):  ")
+                                                                if (oder == 1) {
+                                                                    pcManagement.ListPc[numberPcclient - 1].arrOder.push("sting")
 
-                            }else if (oder == 2){
-                                pcManagement.ListPc[numberPcclient-1].arrOder.push("Chicken egg noodles")
+                                                                } else if (oder == 2) {
+                                                                    pcManagement.ListPc[numberPcclient - 1].arrOder.push("Chicken egg noodles")
 
-                            } else if (oder == 3){
-                                pcManagement.ListPc[numberPcclient-1].arrOder.push("Coca")
+                                                                } else if (oder == 3) {
+                                                                    pcManagement.ListPc[numberPcclient - 1].arrOder.push("Coca")
 
-                            }else if(oder == 4){
-                                pcManagement.ListPc[numberPcclient-1].arrOder.push("Aqua")
+                                                                } else if (oder == 4) {
+                                                                    pcManagement.ListPc[numberPcclient - 1].arrOder.push("Aqua")
 
-                            }else if (oder==5){
-                                pcManagement.ListPc[numberPcclient-1].arrOder.push("Pepsi")
-                            }
-                            break
-                        case 4:
-                            Player()
+                                                                } else if (oder == 5) {
+                                                                    pcManagement.ListPc[numberPcclient - 1].arrOder.push("Pepsi")
+                                                                }
+                                                                break
+                                                            case 4:
+                                                                // Player()
+                                                                break
+                                                        }
+                                                    }
+                                                    while (choice1 !== 4);
+                                                    break
+                                                }else{
+                                                    console.log("máy đã được truy cập")
+                                                }
+
+                                            } else {
+                                                check = false
+                                                console.log("Sai tài khoản hoặc mật khẩu")
+                                                // Player()
+                                            }
+                                        }
+                                    } while (accountClient !== play.listClient[i].Name || passwordClient !== play.listClient[i].Pass)
+                                }else {
+                                    console.log('=== Số máy không tồn tại!\n Nhập số máy phù hợp.')
+                                    // Player()
+                                }
+// }
+// Player()
+
+                            }while (choice1 == 4)
                             break
                     }
                 }
-                while (choice1 !== 0);
+                while (choice !== 0);
             } else {
                 console.log("Sai tài khoản hoặc mật khẩu")
-                Player()
-                return
+                // return
             }
-        } while (accountclient !== play.listClient[0].Name || passwordclient !== play.listClient[0].Pass)
+        } while (account == admin.Name || password == admin.Pass)
     }
-}
-Player()
+// }
+// WorkOnThePc()
+//------function người chơi----------
+
+// function Player() {
+
 
 
 
