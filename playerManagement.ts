@@ -36,6 +36,7 @@ export class PlayerManagement {
                 }
             }
     }
+
     upload(Id: string, Name: string, Pass: string, Phone: string) { // phương thức sửa thông tin tài khoản.
         console.log(Id)
         const user = this.findUser(Id)

@@ -4,20 +4,15 @@ export class Profileclient  {
     Phone:number
     Id:string
     Pass:string
-
-
-
     constructor(Name:string,Phone:number,Id:string,Pass:string) {
         this.Name=Name
         this.Phone=Phone
         this.Id=Id
         this.Pass=Pass
-
     }
     setName(Name:string){
         this.Name=Name
     }
-
     getName(){
         return this.Name
     }
